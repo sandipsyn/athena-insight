@@ -9,19 +9,19 @@ declare var Auth0: any;
 @Injectable()
 export class Auth {
   // Configure Auth0
-    options = {
-        auth: {
-            responseType: 'id_token',
-            params: {scope: 'openid name email'}
-        }
-    };
+  options = {
+    auth: {
+      responseType: 'id_token',
+      params: { scope: 'openid name email' }
+    }
+  };
+
   auth0 = new Auth0({
     domain: myConfig.domain,
     clientID: myConfig.clientID,
     callbackOnLocationHash: true,
     callbackURL: myConfig.callbackURL,
     options: this.options
-
   });
 
   constructor(private router: Router) {

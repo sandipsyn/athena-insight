@@ -13,6 +13,7 @@ import { SearchComponent } from './components/search/search.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { TaggedResultComponent } from './components/tagged-result/tagged-result.component';
 import { DummyResultComponent } from './components/dummy.result.component';
+import { AutocompleteComponent } from './components/autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DummyResultComponent } from './components/dummy.result.component';
     SearchComponent,
     SearchResultComponent,
     TaggedResultComponent,
-    DummyResultComponent
+    DummyResultComponent,
+    AutocompleteComponent
   ],
   imports: [
     BrowserModule,

@@ -7,24 +7,20 @@
       <form name="athena-search">
         <div class="row">
           <div class="form-group col-sm-5">
-            <label> Drugs: </label>
-            <input type="text" class="form-control" name="drugs" placeholder="Select Drug" [(ngModel)]=query (keyup)=filter()/>
-
-            <div class="suggestions" *ngIf="filteredList.length > 0">
-              <ul *ngFor="let item of filteredList">
-                <li>
-                  <a (click)="select(item)">{{item}}</a>
-                </li>
-              </ul>
-            </div>
-
+            <!-- Autocomplete component -->
+            <autocomplete-input #drug [label]="'Drugs'" [name]="'drugs'" (change)="drugValueChange($event)"
+            [data]="drugs" [placeholder]="'Select Drug'"></autocomplete-input>
           </div>
+
           <div class="col-sm-2 or">
             <span>Or</span>
           </div>
+
           <div class="form-group  col-sm-5">
-            <label> Diseases: </label>
-            <input type="text" class="form-control" placeholder="Select Disease" />
+            <!-- Autocomplete component -->
+            <autocomplete-input #disease [label]="'Diseases'" [name]="'diseases'"
+            (change)="diseaseValueChange($event)" [data]="diseases" 
+            [placeholder]="'Select Diseases'"></autocomplete-input>
           </div>
 
         </div>
@@ -41,9 +37,7 @@
               <!-- <input type="text" class="form-control" placeholder="Select Org"> -->
               <select class="form-control">
               <option value="" selected disabled>Please select Org</option>
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
+              <option *ngFor="let org of orgs">{{org}}</option>
             </select>
             </div>
           </div>
@@ -53,9 +47,7 @@
             <div class="col-sm-6">
               <select class="form-control">
               <option value="" selected disabled>Please select Exp</option>
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
+              <option *ngFor="let exp of exps">{{exp}}</option>
             </select>
             </div>
           </div>
