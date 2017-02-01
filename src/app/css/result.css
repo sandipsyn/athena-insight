@@ -1,0 +1,15 @@
+.progress-container, .result-container {
+  margin: 20% auto;
+  text-align: center;
+}
+
+.search-text {
+  margin: 15% auto;
+  padding: 0 20px;
+}
+
+.sub-heading {
+  text-align: center;
+  line-height: 1.2em;
+  font-weight: 300;
+}

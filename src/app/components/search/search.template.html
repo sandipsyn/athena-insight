@@ -1,0 +1,76 @@
+<div class="search">
+  <div class="container">
+
+    <div class="search-container">
+      <h3 class="sub-heading"> Select items to search</h3>
+
+      <form name="athena-search">
+        <div class="row">
+          <div class="form-group col-sm-5">
+            <label> Drugs: </label>
+            <input type="text" class="form-control" name="drugs" placeholder="Select Drug" [(ngModel)]=query (keyup)=filter()/>
+
+            <div class="suggestions" *ngIf="filteredList.length > 0">
+              <ul *ngFor="let item of filteredList">
+                <li>
+                  <a (click)="select(item)">{{item}}</a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+          <div class="col-sm-2 or">
+            <span>Or</span>
+          </div>
+          <div class="form-group  col-sm-5">
+            <label> Diseases: </label>
+            <input type="text" class="form-control" placeholder="Select Disease" />
+          </div>
+
+        </div>
+
+        <!--- Horizontal row -->
+        <hr class="and" />
+
+        <!-- Horizontal form dropdown -->
+        <div class="form-horizontal">
+
+          <div class="form-group">
+            <label class="control-label col-sm-3" for="org"> Org: </label>
+            <div class="col-sm-6">
+              <!-- <input type="text" class="form-control" placeholder="Select Org"> -->
+              <select class="form-control">
+              <option value="" selected disabled>Please select Org</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+            </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-3" for="org"> Exp: </label>
+            <div class="col-sm-6">
+              <select class="form-control">
+              <option value="" selected disabled>Please select Exp</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+            </select>
+            </div>
+          </div>
+
+          <!-- <div class="form-group">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-default"> Search </button>
+          </div>
+        </div> -->
+
+          <button type="submit" name="button" (click)="getResult()"
+          class="btn btn-lg btn-primary btn-block btn-signin btn-search">Search</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+  <div>

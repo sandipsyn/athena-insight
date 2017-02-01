@@ -1,0 +1,75 @@
+.search {
+  width: 100vw;
+}
+
+.search-container {
+  max-width: 720px;
+  margin: 10px auto;
+}
+
+.sub-heading {
+  text-align: center;
+}
+
+.or {
+  margin: 30px 0 0 0;
+  text-align: center;
+}
+
+hr.and {
+  border-top: 1px solid #8c8b8b;
+  padding: 6px;
+  margin: 2em 20% 2em 20%;
+  text-align: center;
+}
+
+hr.and:after {
+  content: 'AND';
+  display: inline-block;
+  position: relative;
+  top: -16px;
+  padding: 0 3px;
+  color: #8c8b8b;
+  background: #f6f6f6;
+  font-size: 1em;
+}
+
+.suggestions{
+	border:solid 1px #f1f1f1;
+	position:absolute;
+	width:600px;
+	background: white;
+  z-index: 10;
+}
+
+.suggestions ul{
+	padding: 0px;
+	margin: 0px;
+}
+
+/*.container{
+	width:600px;
+	margin-left:10px;
+	margin-top:10px;
+}*/
+.suggestions ul li{
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+.suggestions ul li a{
+	padding:5px;
+	display: block;
+	text-decoration: none;
+	color:#7E7E7E;
+}
+
+.suggestions ul li a:hover{
+	background-color: #f1f1f1;
+}
+
+.btn-search {
+  max-width: 320px;
+  margin: 30px auto 0 auto;
+}
