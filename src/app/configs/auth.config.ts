@@ -8,5 +8,5 @@ export const myConfig: AuthConfiguration = {
     clientID: 'kHyHnUDlZodGa2pDSsZEYYJznRxxvDzP',
     domain: 'athena-systems.auth0.com',
     // You may need to change this!
-    callbackURL: 'http://localhost:4200/'
+    callbackURL: location.href
 };
