@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { QueryOptions } from '../../configs/queryOptions.config';
 
 @Component({
   selector: 'tagged-result',
@@ -9,6 +10,7 @@ import { Component } from '@angular/core';
 export class TaggedResultComponent {
   inProgress: Boolean;
   progressValue: number;
+  taggedResult = QueryOptions.taggedResult;
 
   constructor() {
     this.inProgress = true;

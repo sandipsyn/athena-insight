@@ -16,7 +16,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     </ul>
   </div>
   `,
-  styleUrls: ['./../css/search.css']
+  styleUrls: ['./../../css/search.css']
 })
 
 export class AutocompleteComponent {

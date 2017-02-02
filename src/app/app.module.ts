@@ -12,8 +12,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { TaggedResultComponent } from './components/tagged-result/tagged-result.component';
-import { DummyResultComponent } from './components/dummy.result.component';
-import { AutocompleteComponent } from './components/autocomplete.component';
+import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +24,8 @@ import { AutocompleteComponent } from './components/autocomplete.component';
     SearchComponent,
     SearchResultComponent,
     TaggedResultComponent,
-    DummyResultComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    DataTableComponent
   ],
   imports: [
     BrowserModule,
