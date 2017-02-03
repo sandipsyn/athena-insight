@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { QueryOptions } from '../../configs/queryOptions.config';
 
+import { ApiService } from '../../services/apiService';
+
 @Component({
   selector: 'tagged-result',
   templateUrl: 'tagged-result.template.html',
-  styleUrls: ['./../../css/result.css']
+  styleUrls: ['./../../css/result.css'],
+  providers: [ApiService]
 })
 
 export class TaggedResultComponent {
@@ -12,7 +15,7 @@ export class TaggedResultComponent {
   progressValue: number;
   taggedResult = QueryOptions.taggedResult;
 
-  constructor() {
+  constructor(private apiService: ApiService) {
     this.inProgress = true;
     this.progressValue = 0;
 
@@ -26,6 +29,16 @@ export class TaggedResultComponent {
       this.progressValue += 5;
 
     }, 500);
+
+    this.apiService.getTaggedResult()
+      .then((data) => {
+        this.taggedResult = data;
+        clearInterval(progress);
+        this.inProgress = false;
+      })
+      .catch((err) => {
+        console.log('Error fetching data')
+      })
   }
 
 }

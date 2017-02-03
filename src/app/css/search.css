@@ -34,12 +34,16 @@ hr.and:after {
   font-size: 1em;
 }
 
+
+/** Autocomplete suggestions **/
 .suggestions{
-	border:solid 1px #f1f1f1;
-	position:absolute;
-	width:600px;
+  position: absolute;
+  max-width:600px;
+  width: 100%;
 	background: white;
   z-index: 10;
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+  border: none;
 }
 
 .suggestions ul{

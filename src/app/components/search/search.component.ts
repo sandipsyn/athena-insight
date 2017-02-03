@@ -10,9 +10,14 @@ import { QueryOptions } from '../../configs/queryOptions.config';
 
 export class SearchComponent {
 
-  constructor(
-    private router: Router
-  ) { }
+  // Define search values
+  drug: string;
+  disease: string;
+  org: string;
+  exp: string;
+
+  // Constructor
+  constructor(private router: Router) { }
 
   public query = '';
 
@@ -21,14 +26,16 @@ export class SearchComponent {
   public orgs = QueryOptions.orgs;
   public exps = QueryOptions.exp;
 
-  public search():any{
-  // It will return ncbi eutils object to make search.
-      return require("ncbi-eutils");
+  public search(): any {
+    // It will return ncbi eutils object to make search.
+    return require("ncbi-eutils");
   }
 
   // Need to get results from NCBI-DB and disaply it in tabular form
-  getResult() : void {
+  getResult(): void {
     var Eutils = this.search();
+
+    console.log('drug ' + this.drug + ' disease ' + this.disease + ' org ' + this.org + ' exp ' + this.exp);
     // Ex of Eutils search.
     //    Eutils.esearch({db:'gene', term:'drugs', field:'vitamin A', retmax: 20, restart: 2})
     //      .then(function(d){console.log(d)});
@@ -40,11 +47,25 @@ export class SearchComponent {
   }
 
   diseaseValueChange(value) {
-    console.log(`Disease ${value}`)
+    this.disease = value;
   }
 
   drugValueChange(value) {
-    console.log(`Drug ${value}`);
+    this.drug = value;
+  }
+
+  onOptionSelection(type, value) {
+    switch (type) {
+      case 'org':
+        this.org = value;
+        break;
+
+      case 'exp':
+        this.exp = value;
+        break;
+
+      default: break;
+    }
   }
 
 }

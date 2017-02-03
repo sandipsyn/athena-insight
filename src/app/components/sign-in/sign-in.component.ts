@@ -11,6 +11,5 @@ export class SignInComponent {
 
   constructor(private auth: Auth) {
     this.userName = localStorage.getItem('userName');
-    console.log(auth);
   }
 }

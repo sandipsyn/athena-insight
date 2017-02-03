@@ -8,5 +8,10 @@ import { Auth } from './services/auth.service';
 })
 
 export class HeaderComponent {
-  constructor(private auth: Auth) {}
+  // user profile object
+  profile: any;
+
+  constructor(private auth: Auth) {
+    this.profile = auth.userProfile;
+  }
 }

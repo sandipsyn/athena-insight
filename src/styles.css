@@ -63,6 +63,18 @@ body {
   background-color: #3079ed;
 }
 
+.txt-right {
+  text-align: right;
+}
+
+.txt-left{
+  text-align: left;
+}
+
+.txt-center {
+  text-align: center;
+}
+
 
 /*@media (min-width: 480px) {
   .footer {
