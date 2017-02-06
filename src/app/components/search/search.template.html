@@ -63,7 +63,9 @@
             </div>
           </div>
 
-          <button type="submit" name="button" (click)="getResult()"
+          <button type="submit" name="button"
+          [disabled]="!drug"
+          (click)="getResult()"
           class="btn btn-lg btn-primary btn-block btn-signin btn-search">Search</button>
         </div>
       </form>

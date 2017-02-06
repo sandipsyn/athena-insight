@@ -13,7 +13,7 @@ import { ApiService } from '../../services/apiService';
 export class TaggedResultComponent {
   inProgress: Boolean;
   progressValue: number;
-  taggedResult = QueryOptions.taggedResult;
+  taggedResult = QueryOptions.dummyResult;
 
   constructor(private apiService: ApiService) {
     this.inProgress = true;
@@ -30,7 +30,7 @@ export class TaggedResultComponent {
 
     }, 500);
 
-    this.apiService.getTaggedResult()
+    this.apiService.getTaggedResult(this.taggedResult)
       .then((data) => {
         this.taggedResult = data;
         clearInterval(progress);

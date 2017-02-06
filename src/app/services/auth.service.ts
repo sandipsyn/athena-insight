@@ -1,7 +1,7 @@
 import { Injectable }      from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
 import { Router }          from '@angular/router';
-import { myConfig }        from './../configs/auth.config';
+import { authConfig }      from './../configs/auth.config';
 
 // Avoid name not found warnings
 // TODO - Need to find out which version of library to use for login and gettig
@@ -23,15 +23,15 @@ export class Auth {
   };
 
   auth0 = new Auth0({
-    domain: myConfig.domain,
-    clientID: myConfig.clientID,
+    domain: authConfig.domain,
+    clientID: authConfig.clientID,
     callbackOnLocationHash: true,
-    callbackURL: myConfig.callbackURL,
+    callbackURL: authConfig.callbackURL,
     options: this.options
   });
 
   // Configure Auth0
-  lock = new Auth0Lock(myConfig.clientID, myConfig.domain, {
+  lock = new Auth0Lock(authConfig.clientID, authConfig.domain, {
     additionalSignUpFields: [{
       name: "address",                              // required
       placeholder: "enter your address",            // required

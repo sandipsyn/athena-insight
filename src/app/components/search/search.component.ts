@@ -11,10 +11,10 @@ import { QueryOptions } from '../../configs/queryOptions.config';
 export class SearchComponent {
 
   // Define search values
-  drug: string;
-  disease: string;
-  org: string;
-  exp: string;
+  drug: string = '';
+  disease: string = '';
+  org: string = '';
+  exp: string = '';
 
   // Constructor
   constructor(private router: Router) { }
@@ -37,11 +37,41 @@ export class SearchComponent {
 
     console.log('drug ' + this.drug + ' disease ' + this.disease + ' org ' + this.org + ' exp ' + this.exp);
     // Ex of Eutils search.
-    //    Eutils.esearch({db:'gene', term:'drugs', field:'vitamin A', retmax: 20, restart: 2})
-    //      .then(function(d){console.log(d)});
-    //    Eutils.esearch({db:'gene', term:'drugs', field:'vitamin A', retmax: 1, restart: 21})
-    //      .then(Eutils.esummary())
-    //      .then(function(d){console.log(d)});
+    // Eutils.esearch({
+    //   db: 'gene',
+    //   term: 'drugs',
+    //   field: 'vitamin A',
+    //   retmax: 20,
+    //   restart: 2
+    // })
+    // .then((d) => console.log(d));
+
+    //   Eutils.esearch({
+    //     db: 'gene',
+    //     term: 'drugs',
+    //     field: 'vitamin A',
+    //     retmax: 1,
+    //     restart: 21
+    //   })
+    //   .then(Eutils.esummary())
+    //   .then((d)=> console.log(d));
+    //
+
+    // Eutils.esearch({
+    //   db: 'gene',
+    //   term: 'foxp2[sym] AND human[orgn]'
+    // })
+    // .then((d) => console.log(d));
+
+    // Eutils.esearch({
+    //   db:'gene',
+    //   term: 'ltf[sym] AND human[orgn]'
+    // })
+    // .then(Eutils.efetch)
+    // .then((d)=> {
+    //   console.log(d);
+    //   this.router.navigate(['/search-result']);
+    // })
 
     this.router.navigate(['/search-result']);
   }
