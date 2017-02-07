@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { QueryOptions } from '../../configs/queryOptions.config';
 
+import { SearchService } from '../../services/searchService';
+
 @Component({
   selector: 'athena-search',
   templateUrl: 'search.template.html',
@@ -16,8 +18,14 @@ export class SearchComponent {
   org: string = '';
   exp: string = '';
 
+  // Need to figure better way for doing this
+  invalidForm = false;
+  onSubmit = false;
+  btnText = 'Search';
+
+
   // Constructor
-  constructor(private router: Router) { }
+  constructor(private router: Router, private searchService: SearchService) { }
 
   public query = '';
 
@@ -33,57 +41,44 @@ export class SearchComponent {
 
   // Need to get results from NCBI-DB and disaply it in tabular form
   getResult(): void {
+    // if no value selected for drug or disease
+    if (this.onSubmit || (!this.drug && !this.disease)) {
+      this.invalidForm = true;
+      return;
+    }
+
+    this.onSubmit = true;
+    this.btnText = 'Loading';
+
     var Eutils = this.search();
 
     console.log('drug ' + this.drug + ' disease ' + this.disease + ' org ' + this.org + ' exp ' + this.exp);
-    // Ex of Eutils search.
-    // Eutils.esearch({
-    //   db: 'gene',
-    //   term: 'drugs',
-    //   field: 'vitamin A',
-    //   retmax: 20,
-    //   restart: 2
-    // })
-    // .then((d) => console.log(d));
 
-    //   Eutils.esearch({
-    //     db: 'gene',
-    //     term: 'drugs',
-    //     field: 'vitamin A',
-    //     retmax: 1,
-    //     restart: 21
-    //   })
-    //   .then(Eutils.esummary())
-    //   .then((d)=> console.log(d));
-    //
-
-    // Eutils.esearch({
-    //   db: 'gene',
-    //   term: 'foxp2[sym] AND human[orgn]'
-    // })
-    // .then((d) => console.log(d));
-
-    // Eutils.esearch({
-    //   db:'gene',
-    //   term: 'ltf[sym] AND human[orgn]'
-    // })
-    // .then(Eutils.efetch)
-    // .then((d)=> {
-    //   console.log(d);
-    //   this.router.navigate(['/search-result']);
-    // })
-
-    this.router.navigate(['/search-result']);
+    Eutils.esearch({ db: 'gds', term: 'chordoma' })
+      .then((d) => {
+        //supported eutil parameters can be added like this
+        d.retstart = 5;
+        return Eutils.esummary(d);
+      })
+      .then((d) => {
+        console.log(d);
+        this.searchService.generateResult(d);
+        this.router.navigate(['/search-result']);
+      })
+      .catch(function(d) { console.log(d) });
   }
 
+  // event handler for drug value change
   diseaseValueChange(value) {
     this.disease = value;
   }
 
+  // event handler for disease value change
   drugValueChange(value) {
     this.drug = value;
   }
 
+  // Gets called on selection of options from dropdown list
   onOptionSelection(type, value) {
     switch (type) {
       case 'org':

@@ -15,6 +15,8 @@ import { TaggedResultComponent } from './components/tagged-result/tagged-result.
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
 
+import { SearchService } from './services/searchService';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { QueryOptions } from '../../configs/queryOptions.config';
 
-@Component ({
+import { SearchService } from '../../services/searchService';
+
+@Component({
   selector: 'search-result',
   templateUrl: 'search-result.template.html',
   styleUrls: ['./../../css/result.css']
@@ -10,12 +11,15 @@ import { QueryOptions } from '../../configs/queryOptions.config';
 
 export class SearchResultComponent {
   constructor(
-    private router: Router
+    private router: Router,
+    private searchService: SearchService
   ) { }
 
-  dummyResult = QueryOptions.dummyResult;
+  dummyResult = this.searchService.getSearchResult();
 
-  getTaggedResult() :void {
+  // console.log('Result', dummyResult);
+
+  getTaggedResult(): void {
     this.router.navigate(['/result']);
   }
 }

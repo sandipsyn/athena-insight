@@ -4,7 +4,7 @@
     <div class="search-container">
       <h3 class="sub-heading"> Select items to search</h3>
 
-      <form name="athena-search">
+      <form #search="ngForm">
         <div class="row">
           <div class="form-group col-sm-5">
             <!-- Autocomplete component -->
@@ -36,6 +36,11 @@
 
         </div>
 
+        <div class="row" *ngIf="invalidForm">
+          <div class="col-sm-12 txt-center">
+            <h5 class="text-danger">Need to provide at least one value</h5>
+          </div>
+        </div>
         <!--- Horizontal row -->
         <hr class="and" />
 
@@ -64,9 +69,10 @@
           </div>
 
           <button type="submit" name="button"
-          [disabled]="!drug"
           (click)="getResult()"
-          class="btn btn-lg btn-primary btn-block btn-signin btn-search">Search</button>
+          class="btn btn-lg btn-primary btn-block btn-signin btn-search">
+            <i *ngIf="onSubmit" class="fa fa-spinner fa-spin"></i>  {{ btnText }}
+          </button>
         </div>
       </form>
 

@@ -12,8 +12,8 @@ import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core
     (keyup)="filter($event)"/>
 
   <div class="suggestions" *ngIf="filteredList.length > 0">
-    <ul *ngFor="let item of filteredList">
-      <li>
+    <ul>
+      <li *ngFor="let item of filteredList">
         <a (click)="select(item)">{{item}}</a>
       </li>
     </ul>

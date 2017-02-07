@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { QueryOptions } from '../../configs/queryOptions.config';
+//import { QueryOptions } from '../../configs/queryOptions.config';
 
 import { ApiService } from '../../services/apiService';
+import { SearchService } from '../../services/searchService';
 
 @Component({
   selector: 'tagged-result',
@@ -13,9 +14,11 @@ import { ApiService } from '../../services/apiService';
 export class TaggedResultComponent {
   inProgress: Boolean;
   progressValue: number;
-  taggedResult = QueryOptions.dummyResult;
 
-  constructor(private apiService: ApiService) {
+  taggedResult = this.searchService.getSearchResult();
+
+  constructor(private apiService: ApiService,
+              private searchService: SearchService) {
     this.inProgress = true;
     this.progressValue = 0;
 
