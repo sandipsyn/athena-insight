@@ -22,6 +22,7 @@ export class SearchService {
     let processedResult = [];
 
     for (let i = 0; i < dataSet.length; i++) {
+
       let result = this.retrieveData(dataSet[i]);
 
       let requiredResult = {

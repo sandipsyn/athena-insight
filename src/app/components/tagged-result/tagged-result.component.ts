@@ -15,6 +15,8 @@ export class TaggedResultComponent {
     inProgress:Boolean;
     progressValue:number;
 
+    progress: any;
+
     taggedResult = this.searchService.getSearchResult();
 
     constructor(private router:Router,
@@ -26,10 +28,10 @@ export class TaggedResultComponent {
         // Fetch data from server
         this.getData();
 
-        const progress = setInterval(() => {
+        this.progress = setInterval(() => {
 
             if (this.progressValue === 100) {
-                clearInterval(progress);
+                clearInterval(this.progress);
                 this.inProgress = false;
             }
 
@@ -51,7 +53,7 @@ export class TaggedResultComponent {
         this.apiService.getTaggedResult(this.taggedResult)
             .then((data) => {
                 this.taggedResult = data;
-                clearInterval(progress);
+                clearInterval(this.progress);
                 this.inProgress = false;
             })
             .catch((err) => {
