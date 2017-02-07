@@ -59,7 +59,7 @@ export class SearchComponent {
     console.log('drug ' + this.drug + ' disease ' + this.disease + ' org ' + this.org + ' exp ' + this.exp);
 
     //console.time('eUtils Search');
-
+    //
     //Eutils.esearch({ db: 'gds', term: 'chordoma' })
     //  .then((d) => {
     //    //supported eutil parameters can be added like this

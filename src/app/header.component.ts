@@ -12,6 +12,8 @@ export class HeaderComponent {
   profile: any;
 
   constructor(private auth: Auth) {
-    this.profile = auth.userProfile;
+    setInterval(() => {
+      this.profile = auth.userProfile;
+    }, 100);
   }
 }
