@@ -1,47 +1,62 @@
 import { Component } from '@angular/core';
-//import { QueryOptions } from '../../configs/queryOptions.config';
+import { Router } from '@angular/router';
 
 import { ApiService } from '../../services/apiService';
 import { SearchService } from '../../services/searchService';
 
 @Component({
-  selector: 'tagged-result',
-  templateUrl: 'tagged-result.template.html',
-  styleUrls: ['./../../css/result.css'],
-  providers: [ApiService]
+    selector: 'tagged-result',
+    templateUrl: 'tagged-result.template.html',
+    styleUrls: ['./../../css/result.css'],
+    providers: [ApiService]
 })
 
 export class TaggedResultComponent {
-  inProgress: Boolean;
-  progressValue: number;
+    inProgress:Boolean;
+    progressValue:number;
 
-  taggedResult = this.searchService.getSearchResult();
+    taggedResult = this.searchService.getSearchResult();
 
-  constructor(private apiService: ApiService,
-              private searchService: SearchService) {
-    this.inProgress = true;
-    this.progressValue = 0;
+    constructor(private router:Router,
+                private apiService:ApiService,
+                private searchService:SearchService) {
+        this.inProgress = true;
+        this.progressValue = 0;
 
-    const progress = setInterval(() => {
+        // Fetch data from server
+        this.getData();
 
-      if (this.progressValue === 100) {
-        clearInterval(progress);
-        this.inProgress = false;
-      }
+        const progress = setInterval(() => {
 
-      this.progressValue += 5;
+            if (this.progressValue === 100) {
+                clearInterval(progress);
+                this.inProgress = false;
+            }
 
-    }, 500);
+            this.progressValue += 5;
 
-    this.apiService.getTaggedResult(this.taggedResult)
-      .then((data) => {
-        this.taggedResult = data;
-        clearInterval(progress);
-        this.inProgress = false;
-      })
-      .catch((err) => {
-        console.log('Error fetching data')
-      })
-  }
+        }, 500);
+
+    }
+
+    getData() {
+        if (this.taggedResult.length < 1) {
+            this.router.navigate(['/']);
+        } else {
+            this.getTaggedResult();
+        }
+    }
+
+    getTaggedResult() {
+        this.apiService.getTaggedResult(this.taggedResult)
+            .then((data) => {
+                this.taggedResult = data;
+                clearInterval(progress);
+                this.inProgress = false;
+            })
+            .catch((err) => {
+                console.log('Error fetching data')
+            })
+    }
 
 }

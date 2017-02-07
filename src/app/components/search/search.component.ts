@@ -41,8 +41,11 @@ export class SearchComponent {
 
   // Need to get results from NCBI-DB and disaply it in tabular form
   getResult(): void {
+
+    if (this.onSubmit) return;
+
     // if no value selected for drug or disease
-    if (this.onSubmit || (!this.drug && !this.disease)) {
+    if (!this.drug && !this.disease) {
       this.invalidForm = true;
       return;
     }
