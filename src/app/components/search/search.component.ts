@@ -58,28 +58,28 @@ export class SearchComponent {
 
     console.log('drug ' + this.drug + ' disease ' + this.disease + ' org ' + this.org + ' exp ' + this.exp);
 
-    Eutils.esearch({ db: 'gds', term: 'chordoma' })
-      .then((d) => {
-        //supported eutil parameters can be added like this
-        d.retstart = 5;
-        return Eutils.esummary(d);
-      })
-      .then((d) => {
-        console.log(d);
-        this.searchService.generateResult(d);
-        //this.searchService.generateResult(searchResult);
-        this.router.navigate(['/search-result']);
-      })
-      .catch((d) => {
-          console.log(d);
-          this.searchService.generateResult(searchResult);
-          this.router.navigate(['/search-result']);
-        } );
+    //Eutils.esearch({ db: 'gds', term: 'chordoma' })
+    //  .then((d) => {
+    //    //supported eutil parameters can be added like this
+    //    d.retstart = 5;
+    //    return Eutils.esummary(d);
+    //  })
+    //  .then((d) => {
+    //    console.log(d);
+    //    this.searchService.generateResult(d);
+    //    //this.searchService.generateResult(searchResult);
+    //    this.router.navigate(['/search-result']);
+    //  })
+    //  .catch((d) => {
+    //      console.log(d);
+    //      this.searchService.generateResult(searchResult);
+    //      this.router.navigate(['/search-result']);
+    //    } );
 
-    //setTimeout(() => {
-    //  this.searchService.generateResult(searchResult);
-    //  this.router.navigate(['/search-result']);
-    //}, 1500);
+    setTimeout(() => {
+      this.searchService.generateResult(searchResult);
+      this.router.navigate(['/search-result']);
+    }, 1500);
 
   }
 

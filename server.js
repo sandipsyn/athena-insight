@@ -8,8 +8,8 @@ const app = express();
 // same url but with HTTPS
 const forceSSL = function() {
   return function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] === 'https') {
-      return res.redirect(['http://', req.get('Host'), req.url].join(''));
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      return res.redirect(['https://', req.get('Host'), req.url].join(''));
     }
     next();
   }
