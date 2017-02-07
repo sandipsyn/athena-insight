@@ -11,16 +11,16 @@
   </div>
 
   <div *ngIf="!inProgress">
-    <div class="col col-sm-4 result-container">
+    <div class="col col-sm-12 result-container">
       <h3>ALL DONE!</h3>
       <p>
         Your job is processed. You can now download the tagged results set.
       </p>
 
-      <button class="btn btn-lg btn-primary btn-block btn-signin"> Download </button>
+      <button class="btn btn-lg btn-primary btn-block btn-signin btn-download"> Download </button>
     </div>
 
-    <div class="col-sm-8">
+    <div class="col-sm-12">
       <data-table [tableData]="taggedResult"></data-table>
     </div>
 

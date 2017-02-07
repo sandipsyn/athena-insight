@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { QueryOptions } from '../../configs/queryOptions.config';
 
+import { QueryOptions } from '../../configs/queryOptions.config';
+import { searchResult } from '../../configs/searchResult';
 import { SearchService } from '../../services/searchService';
 
 @Component({
@@ -66,9 +67,14 @@ export class SearchComponent {
       .then((d) => {
         console.log(d);
         this.searchService.generateResult(d);
+        //this.searchService.generateResult(searchResult);
         this.router.navigate(['/search-result']);
       })
-      .catch(function(d) { console.log(d) });
+      .catch((d) => {
+          console.log(d);
+          this.searchService.generateResult(searchResult);
+          this.router.navigate(['/search-result']);
+        } );
   }
 
   // event handler for drug value change
