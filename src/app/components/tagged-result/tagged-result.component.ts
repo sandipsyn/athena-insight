@@ -50,8 +50,10 @@ export class TaggedResultComponent {
     }
 
     getTaggedResult() {
+        console.time('Node API');
         this.apiService.getTaggedResult(this.taggedResult)
             .then((data) => {
+                console.timeEnd('Node API');
                 this.taggedResult = data;
                 clearInterval(this.progress);
                 this.inProgress = false;

@@ -8,7 +8,7 @@ import { backendConfig } from './../configs/auth.config';
 @Injectable()
 export class ApiService {
 
-  private taggedApiUrl = `http://${backendConfig.endpoint}/processData`;
+  private taggedApiUrl = `https://${backendConfig.endpoint}/processData`;
 
   constructor(private http: Http) { }
 
