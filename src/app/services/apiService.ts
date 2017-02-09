@@ -41,8 +41,8 @@ export class ApiService {
      * @return {any|Promise<Promise<any>>}
      */
     searchNCBI(searchData:any):Promise<any> {
-        //return this.http.post(this.eutilsSearchUrl, data)
-        return this.http.get(this.eutilsSearchUrl)
+        return this.http.post(this.eutilsSearchUrl, searchData)
+        // return this.http.get(this.eutilsSearchUrl)
             .toPromise()
             .then(res => res.json())
             .catch(this.handleError);
