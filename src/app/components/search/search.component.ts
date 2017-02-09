@@ -2,113 +2,108 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { QueryOptions } from '../../configs/queryOptions.config';
-import { searchResult } from '../../configs/searchResult';
+//import { searchResult } from '../../configs/searchResult';
 import { SearchService } from '../../services/searchService';
+import { ApiService } from '../../services/apiService';
 
 @Component({
-  selector: 'athena-search',
-  templateUrl: 'search.template.html',
-  styleUrls: ['./../../css/search.css']
+    selector: 'athena-search',
+    templateUrl: 'search.template.html',
+    styleUrls: ['./../../css/search.css'],
+    providers: [ApiService]
 })
 
 export class SearchComponent {
 
-  // Define search values
-  drug: string = '';
-  disease: string = '';
-  org: string = '';
-  exp: string = '';
+    // Define search values
+    drug:string = '';
+    disease:string = '';
+    org:string = '';
+    exp:string = '';
 
-  // Need to figure better way for doing this
-  invalidForm = false;
-  onSubmit = false;
-  btnText = 'Search';
+    // Need to figure better way for doing this
+    invalidForm = false;
+    onSubmit = false;
+    btnText = 'Search';
 
 
-  // Constructor
-  constructor(private router: Router, private searchService: SearchService) { }
-
-  public query = '';
-
-  public drugs = QueryOptions.drugs;
-  public diseases = QueryOptions.diseases;
-  public orgs = QueryOptions.orgs;
-  public exps = QueryOptions.exp;
-
-  public search(): any {
-    // It will return ncbi eutils object to make search.
-    return require("ncbi-eutils");
-  }
-
-  // Need to get results from NCBI-DB and disaply it in tabular form
-  getResult(): void {
-
-    if (this.onSubmit) return;
-
-    // if no value selected for drug or disease
-    if (!this.drug && !this.disease) {
-      this.invalidForm = true;
-      return;
+    // Constructor
+    constructor(private router:Router,
+                private searchService:SearchService,
+                private apiService:ApiService) {
     }
 
-    this.onSubmit = true;
-    this.btnText = 'Loading';
+    public query = '';
 
-    var Eutils = this.search();
+    public drugs = QueryOptions.drugs;
+    public diseases = QueryOptions.diseases;
+    public orgs = QueryOptions.orgs;
+    public exps = QueryOptions.exp;
 
-    console.log('drug ' + this.drug + ' disease ' + this.disease + ' org ' + this.org + ' exp ' + this.exp);
+    /**
+     * Fetches data from NCBI DB for user entered values. Redirects user to
+     * search results screen once data is available
+     */
+    getSearchResult():void {
 
-    // console.time('eUtils Search');
-    //
-    // Eutils.esearch({ db: 'gds', term: 'chordoma' })
-    //   .then((d) => {
-    //     //supported eutil parameters can be added like this
-    //     d.retstart = 5;
-    //     return Eutils.esummary(d);
-    //   })
-    //   .then((d) => {
-    //       console.timeEnd('eUtils Search');
-    //
-    //       console.log(d);
-    //       this.searchService.generateResult(d);
-    //       this.router.navigate(['/search-result']);
-    //   })
-    //   .catch((d) => {
-    //       console.log(d);
-    //       this.searchService.generateResult(searchResult);
-    //       this.router.navigate(['/search-result']);
-    //     } );
+        if (this.onSubmit) return;
 
-    setTimeout(() => {
-     this.searchService.generateResult(searchResult);
-     this.router.navigate(['/search-result']);
-    }, 2800);
+        // if no value selected for drug or disease
+        if (!this.drug && !this.disease) {
+            this.invalidForm = true;
+            return;
+        }
 
-  }
+        this.onSubmit = true;
+        this.btnText = 'Loading';
 
-  // event handler for drug value change
-  diseaseValueChange(value) {
-    this.disease = value;
-  }
+        //console.log('drug ' + this.drug + ' disease ' + this.disease + ' org ' + this.org + ' exp ' + this.exp);
 
-  // event handler for disease value change
-  drugValueChange(value) {
-    this.drug = value;
-  }
+        const searchObj = {
+            drug: this.drug,
+            disease: this.disease,
+            org: this.org,
+            exp: this.exp
+        };
 
-  // Gets called on selection of options from dropdown list
-  onOptionSelection(type, value) {
-    switch (type) {
-      case 'org':
-        this.org = value;
-        break;
-
-      case 'exp':
-        this.exp = value;
-        break;
-
-      default: break;
+        this.apiService
+            .searchNCBI(searchObj)
+            .then((data)=> {
+                console.log(data);
+                this.searchService.generateResult(data);
+                this.router.navigate(['/search-result']);
+            })
+            .catch((err) => {
+                console.log(`Error ${err}`);
+                this.onSubmit = false;
+                this.btnText = 'Search';
+            });
     }
-  }
+
+    // event handler for drug value change
+    diseaseValueChange(value) {
+        this.disease = value;
+    }
+
+    // event handler for disease value change
+    drugValueChange(value) {
+        this.drug = value;
+    }
+
+    // Gets called on selection of options from dropdown list
+    onOptionSelection(type, value) {
+        switch (type) {
+            case 'org':
+                this.org = value;
+                break;
+
+            case 'exp':
+                this.exp = value;
+                break;
+
+            default:
+                break;
+        }
+    }
 
 }
