@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-sm-6 col-xs-4">
         <div id="logo" class="logo">
-          <a href="/">
+          <a href="{{isSignedIn? '/search' : '/'}}">
             <!--<span class="site-logo" href="http://athenasystech.com">-->
             <!--<img src="./../assets/images/athena-systems.png" alt="Athena Systech">-->
         <!--</span>-->
@@ -17,9 +17,9 @@
         </div>
       </div>
 
-      <div *ngIf="auth.authenticated() && profile" class="col-sm-6 col-xs-8 txt-right">
-        <span class="profile">{{profile.name}}</span>
-        <button class="btn-logout" (click)="auth.logout()"> Log Out </button>
+      <div *ngIf="isSignedIn && profile" class="col-sm-6 col-xs-8 txt-right">
+        <span class="profile">{{profile}}</span>
+        <button class="btn-logout" (click)="logout()"> Log Out </button>
       </div>
 
       <!-- <ul class="nav navbar-nav">

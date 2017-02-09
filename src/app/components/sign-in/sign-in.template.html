@@ -1,4 +1,4 @@
-<div class="container" *ngIf="!auth.authenticated()">
+<div class="container">
   <div class="row login-container">
     <div class="col-sm-6">
       <div class="card card-container login">
@@ -21,12 +21,8 @@
           <a href="#" class="forgot-password">Forgot the password?</a>
 
           <hr class="or">
-          <button class="btn btn-lg btn-primary btn-block google-signin btn-google" (click)="auth.googleLogin()">
-                <i class="fa fa-google" aria-hidden="true"></i>  Login with Google
-                </button>
-          <button class="btn btn-lg btn-primary btn-block linkedIn-signin btn-linkedin">
-                    <i class="fa fa-linkedin" aria-hidden="true"></i>  Login with LinkedIn
-                </button>
+            <google_button></google_button>
+            <linkedIn_button></linkedIn_button>
         </form>
       </div>
     </div>
@@ -45,6 +41,6 @@
 </div>
 
 
-<div *ngIf="auth.authenticated()">
-  <athena-search></athena-search>
-</div>
+<!--<div>-->
+  <!--<athena-search></athena-search>-->
+<!--</div>-->

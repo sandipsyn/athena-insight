@@ -15,6 +15,8 @@ import { TaggedResultComponent } from './components/tagged-result/tagged-result.
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { LoadingSpinnerComponent } from './loading-spinner.component';
+import {LinkedInAuth } from './components/linkedIn/linkedIn_authentication.component';
+import {GoogleAuth} from './components/google/google-signIn.component';
 
 import { SearchDataService } from './services/searchService';
 
@@ -29,7 +31,9 @@ import { SearchDataService } from './services/searchService';
     TaggedResultComponent,
     AutocompleteComponent,
     DataTableComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    LinkedInAuth,
+    GoogleAuth
   ],
   imports: [
     BrowserModule,

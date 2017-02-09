@@ -1,126 +1,135 @@
-import { Injectable }      from '@angular/core';
-import { tokenNotExpired } from 'angular2-jwt';
-import { Router }          from '@angular/router';
-import { authConfig }      from './../configs/auth.config';
 
-// Avoid name not found warnings
-// TODO - Need to find out which version of library to use for login and gettig
-// user profile
-declare var Auth0: any;
-declare var Auth0Lock: any;
+import {Injectable, NgZone} from '@angular/core';
+import { Router } from '@angular/router';
+
+declare var gapi: any;
+var googleAuth:any;
+var initAPI:any;
+var userName:any;
+declare var IN : any;
 
 @Injectable()
-export class Auth {
-  //Store profile object in auth class
-  userProfile: any;
+export class GoogleAuthService{
+    constructor(private _ngZone: NgZone, private router: Router) {
+        this.OnLinkedInFrameworkLoad();
+        initAPI = new Promise(
+            (resolve) => {
+                window['onLoadGoogleAPI'] =
+                    () => {
+                        resolve(gapi);
+                    };
+                this.init();
+            }
+        )
+        initAPI.then(
+            (gapi) => {
+                gapi.load('auth2', () =>
+                {
+                    var auth2 = gapi.auth2.init({
+                        client_id: '933230715671-ovgiao0ufcmkbkd57nm8m3tlk2jnl8ns.apps.googleusercontent.com',
+                        cookiepolicy: 'single_host_origin',
+                        scope: 'profile email'
+                    });
+                    auth2.attachClickHandler(document.getElementById('googleSignInButton'), {},
+                        this.onSuccess,
+                        this.onFailure
+                    );
+                });
+            }
+        )
 
-  // Configure Auth0
-  options = {
-    auth: {
-      responseType: 'id_token',
-      params: { scope: 'openid name email' }
-    }
-  };
-
-  auth0 = new Auth0({
-    domain: authConfig.domain,
-    clientID: authConfig.clientID,
-    callbackOnLocationHash: true,
-    callbackURL: authConfig.callbackURL,
-    options: this.options
-  });
-
-  // Configure Auth0
-  lock = new Auth0Lock(authConfig.clientID, authConfig.domain, {
-    additionalSignUpFields: [{
-      name: "address",                              // required
-      placeholder: "enter your address",            // required
-      icon: "https://example.com/address_icon.png", // optional
-      validator: function(value) {                  // optional
-        // only accept addresses with more than 10 chars
-        return value.length > 10;
-      }
-    }]
-  });
-
-  constructor(private router: Router) {
-    var result = this.auth0.parseHash(window.location.hash);
-
-    if (result && result.idToken) {
-      localStorage.setItem('id_token', result.idToken);
-      // this.router.navigate(['/home']);
-    } else if (result && result.error) {
-      console.log('error: ' + result.error);
     }
 
-    // Set userProfile attribute if already saved profile
-    this.userProfile = JSON.parse(localStorage.getItem('profile'));
+    init(){
+        let meta = document.createElement('meta');
+        meta.name = 'google-signin-client_id';
+        meta.content = '933230715671-ovgiao0ufcmkbkd57nm8m3tlk2jnl8ns.apps.googleusercontent.com';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        let node = document.createElement('script');
+        node.src = 'https://apis.google.com/js/platform.js?onload=onLoadGoogleAPI';
+        node.type = 'text/javascript';
+        document.getElementsByTagName('body')[0].appendChild(node);
+    }
 
-    // Add callback for lock `authenticated` event
-    this.lock.on("authenticated", (authResult) => {
-      localStorage.setItem('id_token', authResult.idToken);
+    onSuccess = (user) => {
+        this._ngZone.run(
+            () => {
+                if(user.getAuthResponse().scope ) {
+                    this.router.navigate(['/search']);
+                } else {
+                    //write somethind
+                }
+            }
+        );
+    };
 
-      // Fetch profile information
-      this.lock.getProfile(authResult.idToken, (error, profile) => {
-        if (error) {
-          // Handle error
-          alert(error);
-          return;
-        }
+    onFailure = (error) => {
+        this._ngZone.run(() => {
+            //display error msg
+        });
+    };
 
-        profile.user_metadata = profile.user_metadata || {};
-        localStorage.setItem('profile', JSON.stringify(profile));
-        this.userProfile = profile;
-        this.router.navigate(['/']);
-      });
-    });
+    isAuthenticated = () =>  {
+        var auth2 = gapi.auth2.getAuthInstance();
+        console.log(auth2.isSignedIn.get() || IN.User.isAuthorized());
+        return auth2.isSignedIn.get() || IN.User.isAuthorized();
+    };
 
-  }
+    getUserName = () => {
+        var auth2 = gapi.auth2.getAuthInstance();
+        if (auth2.isSignedIn.get()) {
+            var profile = auth2.currentUser.get().getBasicProfile();
+            console.log('Full Name: ' + profile.getName())
+            return profile.getName();
+        } else return userName;
+    };
 
-  public signUp(username, password) {
-    this.auth0.signup({
-      connection: 'Username-Password-Authentication',
-      responseType: 'token',
-      email: username,
-      password: password,
-    }, function(err) {
-      if (err) alert("something went wrong: " + err.message);
-    });
-  };
+    logout = () => {
+        var auth2 = gapi.auth2.getAuthInstance();
 
-  public login(username, password) {
-    this.auth0.login({
-      connection: 'Username-Password-Authentication',
-      responseType: 'token',
-      email: username,
-      password: password,
-    }, function(err) {
-      if (err) alert("something went wrong: " + err.message);
-    });
-  };
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
 
-  public googleLogin() {
-    this.auth0.login({
-      connection: 'google-oauth2'
-    }, function(err) {
-      if (err) alert("something went wrong: " + err.message);
-    });
-  };
+        IN.User.logout();
+    };
 
-  public authenticated() {
-    // Check if there's an unexpired JWT
-    // It searches for an item in localStorage with key == 'id_token'
-    return tokenNotExpired();
+    linkedInLogin = () => {
+        IN.User.authorize(this.gotoSearchPage);
+    };
 
-    // return localStorage value of profile
-    // return localStorage.getItem('profile');
-  };
+    gotoSearchPage = () => {
+        this.router.navigate(['/search']);
+        console.log('user loged in');
+        this.getProfileData();
+    };
 
-  public logout() {
-    // Remove token and profile from localStorage
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('profile');
-    this.userProfile = undefined;
-    this.router.navigate(['/']);
-  };
+    OnLinkedInFrameworkLoad = () => {
+        IN.Event.on(IN, "auth", this.OnLinkedInAuth);
+    };
+
+    OnLinkedInAuth = () => {
+        IN.API.Profile("me").result(result => this.ShowProfileData);
+    };
+
+    ShowProfileData = (profiles) => {
+        console.log(profiles);
+        this.router.navigate(['/search']);
+    };
+
+    success = (data) => {
+        userName = data.firstName + ' ' + data.lastName;
+        console.log(userName);
+    };
+
+    // Handle an error response from the API call
+    onError = (error) =>{
+    console.log(error);
+    };
+
+    // Use the API call wrapper to request the member's basic profile data
+    getProfileData = () => {
+    IN.API.Raw("/people/~").result(this.success).error(this.onError);
+    };
+
 }

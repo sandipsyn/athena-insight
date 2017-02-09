@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Auth } from './../../services/auth.service';
+import { Router } from '@angular/router';
+//import { Auth } from './../../services/auth.service';
 
 @Component({
   selector: 'sign-in',
@@ -9,7 +10,7 @@ import { Auth } from './../../services/auth.service';
 export class SignInComponent {
   userName: string;
 
-  constructor(private auth: Auth) {
-    this.userName = localStorage.getItem('userName');
+  constructor(private router:Router) {
+//    this.userName = localStorage.getItem('userName');
   }
 }
