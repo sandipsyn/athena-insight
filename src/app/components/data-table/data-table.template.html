@@ -11,13 +11,16 @@
         <tr *ngFor="let data of tableData; let i = index">
             <td class="sr-no">
                 <div>
-                    <span>{{i}}.</span>
-                    <input type="checkbox" *ngIf="selectable"
-                                    (change)="updateSelection(i, $event)"/>
+                    <span>{{i+1}}.</span>
+                    <input type="checkbox"
+                           *ngIf="selectable"
+                           (change)="updateSelection(i, $event)"/>
                 </div>
 
             </td>
-            <td *ngFor="let heading of headings">{{data[heading]}}</td>
+            <td *ngFor="let heading of headings">
+                <p>{{data[heading]}}</p>
+            </td>
         </tr>
         </tbody>
     </table>

@@ -1,81 +1,98 @@
 <div class="search">
-  <div class="container">
+    <div class="container">
 
-    <div class="search-container">
-      <h3 class="sub-heading"> Select items to search</h3>
+        <div class="search-container">
 
-      <form #search="ngForm">
-        <div class="row">
-          <div class="form-group col-sm-5">
-            <!-- Autocomplete component -->
-            <autocomplete-input #drug
-              [label]="'Drugs'"
-              [name]="'drugs'"
-              (change)="drugValueChange($event)"
-              [data]="drugs"
-              [placeholder]="'Select Drug'"
-              [disabled]="disease">
-            </autocomplete-input>
-          </div>
+            <loading-spinner *ngIf="onSubmit"></loading-spinner>
 
-          <div class="col-sm-2 or">
-            <span>Or</span>
-          </div>
+            <div *ngIf="!onSubmit">
+                <h3 class="sub-heading"> Select items to search</h3>
 
-          <div class="form-group  col-sm-5">
-            <!-- Autocomplete component -->
-            <autocomplete-input #disease
-              [label]="'Diseases'"
-              [name]="'diseases'"
-              (change)="diseaseValueChange($event)"
-              [data]="diseases"
-              [placeholder]="'Select Diseases'"
-              [disabled]="drug">
-            </autocomplete-input>
-          </div>
+                <form #search="ngForm">
+                    <div class="row">
+                        <div class="form-group col-sm-5">
+                            <!-- Autocomplete component -->
+                            <autocomplete-input #drug
+                                                [label]="'Drugs'"
+                                                [name]="'drugs'"
+                                                (change)="drugValueChange($event)"
+                                                [data]="drugs"
+                                                [placeholder]="'Select Drug'"
+                                                [disabled]="disease">
+                            </autocomplete-input>
+                        </div>
 
-        </div>
+                        <div class="col-sm-2 or">
+                            <span>Or</span>
+                        </div>
 
-        <div class="row" *ngIf="invalidForm">
-          <div class="col-sm-12 txt-center">
-            <h5 class="text-danger">Need to provide at least one value</h5>
-          </div>
-        </div>
-        <!--- Horizontal row -->
-        <hr class="and" />
+                        <div class="form-group  col-sm-5">
+                            <!-- Autocomplete component -->
+                            <autocomplete-input #disease
+                                                [label]="'Diseases'"
+                                                [name]="'diseases'"
+                                                (change)="diseaseValueChange($event)"
+                                                [data]="diseases"
+                                                [placeholder]="'Select Diseases'"
+                                                [disabled]="drug">
+                            </autocomplete-input>
+                        </div>
 
-        <!-- Horizontal form dropdown -->
-        <div class="form-horizontal">
+                    </div>
 
-          <div class="form-group">
-            <label class="control-label col-sm-3" for="org"> Org: </label>
-            <div class="col-sm-6">
-              <!-- <input type="text" class="form-control" placeholder="Select Org"> -->
-              <select class="form-control" (change)="onOptionSelection('org', $event.target.value)">
-              <option value="" selected disabled>Please select Org</option>
-              <option *ngFor="let org of orgs">{{org}}</option>
-            </select>
+                    <div class="row" *ngIf="invalidForm || searchError">
+                        <div class="alert alert-danger text-center">
+                            <strong> Error! </strong> {{errorMessage}}
+                        </div>
+                    </div>
+
+                    <!--- Horizontal row -->
+                    <hr class="and"/>
+
+                    <!-- Horizontal form dropdown -->
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3"> Org: </label>
+
+                            <div class="col-sm-6">
+                                <!-- <input type="text" class="form-control" placeholder="Select Org"> -->
+                                <select class="form-control"
+                                        (change)="onOptionSelection('org', $event.target.value)">
+                                    <option value="" selected disabled>Please
+                                        select Org
+                                    </option>
+                                    <option *ngFor="let org of orgs">{{org}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3"> Exp: </label>
+
+                            <div class="col-sm-6">
+                                <select class="form-control"
+                                        (change)="onOptionSelection('exp', $event.target.value)">
+                                    <option value="" selected disabled>Please
+                                        select Exp
+                                    </option>
+                                    <option *ngFor="let exp of exps">{{exp}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" name="button"
+                                (click)="getSearchResult()"
+                                class="btn btn-lg btn-primary btn-block btn-signin btn-search">
+                            Search
+                        </button>
+
+                    </div>
+                </form>
+
             </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-sm-3" for="org"> Exp: </label>
-            <div class="col-sm-6">
-              <select class="form-control" (change)="onOptionSelection('exp', $event.target.value)">
-              <option value="" selected disabled>Please select Exp</option>
-              <option *ngFor="let exp of exps">{{exp}}</option>
-            </select>
-            </div>
-          </div>
-
-          <button type="submit" name="button"
-          (click)="getSearchResult()"
-          class="btn btn-lg btn-primary btn-block btn-signin btn-search">
-            <i *ngIf="onSubmit" class="fa fa-spinner fa-spin"></i>  {{ btnText }}
-          </button>
         </div>
-      </form>
-
     </div>
-  </div>
-  <div>
+    <div>

@@ -1,23 +1,36 @@
 <div class="container">
 
-  <div class="search-container">
-    <!-- <div class="col col-sm-4 search-text">
-      <h3 class="sub-heading">
-        You can download search results as CSV and work locally to refine the set as per your need.
-      </h3>
+    <div class="search-container">
+        <!-- <div class="col col-sm-4 search-text">
+          <h3 class="sub-heading">
+            You can download search results as CSV and work locally to refine the set as per your need.
+          </h3>
 
-      <button class="btn btn-lg btn-primary btn-block btn-signin btn-search">Download CSV as refined results</button>
-    </div> -->
-    <div class="col col-sm-12 search-table">
-      <div>
-        <h4 class="sub-heading">
-        You can download search results as CSV and work locally to refine the set as per your need.
-      </h4>
-      </div>
-      <data-table [tableData]="resultData" [selectable]="true"></data-table>
-      <button class="btn btn-primary" (click)="getTaggedResult()"
-              [disabled]="!searchService.selectedData.length">Get Tagged Result</button>
+          <button class="btn btn-lg btn-primary btn-block btn-signin btn-search">Download CSV as refined results</button>
+        </div> -->
+
+        <!--<loading-spinner></loading-spinner>-->
+        <div class="col col-sm-12 search-table">
+            <div>
+                <h4 class="sub-heading">
+                    GEO GSE Records
+                </h4>
+            </div>
+            <data-table [tableData]="resultData"
+                        [selectable]="true"></data-table>
+
+            <div class="col-sm-12 text-center">
+                <button class="btn btn-primary" (click)="getTaggedResult()"
+                        [disabled]="!searchService.selectedData.length">Get
+                    Tagged Result
+                </button>
+                <button class="btn btn-primary"
+                        [disabled]="!searchService.selectedData.length">Reset
+                    Selection
+                </button>
+            </div>
+
+        </div>
     </div>
-  </div>
 
 </div>

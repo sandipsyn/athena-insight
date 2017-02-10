@@ -23,22 +23,22 @@ export class SearchComponent {
 
     // Need to figure better way for doing this
     invalidForm = false;
+    searchError = false;
     onSubmit = false;
-    btnText = 'Search';
 
+    public query = '';
+    public errorMessage = `Need to provide at least one value`;
+
+    public drugs = QueryOptions.drugs;
+    public diseases = QueryOptions.diseases;
+    public orgs = QueryOptions.orgs;
+    public exps = QueryOptions.exp;
 
     // Constructor
     constructor(private router:Router,
                 private searchService:SearchDataService,
                 private apiService:ApiService) {
     }
-
-    public query = '';
-
-    public drugs = QueryOptions.drugs;
-    public diseases = QueryOptions.diseases;
-    public orgs = QueryOptions.orgs;
-    public exps = QueryOptions.exp;
 
     /**
      * Fetches data from NCBI DB for user entered values. Redirects user to
@@ -55,9 +55,6 @@ export class SearchComponent {
         }
 
         this.onSubmit = true;
-        this.btnText = 'Loading';
-
-        //console.log('drug ' + this.drug + ' disease ' + this.disease + ' org ' + this.org + ' exp ' + this.exp);
 
         const searchObj = {
             drug: this.drug,
@@ -76,7 +73,8 @@ export class SearchComponent {
             .catch((err) => {
                 console.log(`Error ${err}`);
                 this.onSubmit = false;
-                this.btnText = 'Search';
+                this.searchError = true;
+                this.errorMessage = `No result found!!.`;
             });
     }
 

@@ -14,6 +14,7 @@ import { SearchResultComponent } from './components/search-result/search-result.
 import { TaggedResultComponent } from './components/tagged-result/tagged-result.component';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
+import { LoadingSpinnerComponent } from './loading-spinner.component';
 
 import { SearchDataService } from './services/searchService';
 
@@ -27,7 +28,8 @@ import { SearchDataService } from './services/searchService';
     SearchResultComponent,
     TaggedResultComponent,
     AutocompleteComponent,
-    DataTableComponent
+    DataTableComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
