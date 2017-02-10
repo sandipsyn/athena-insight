@@ -1,16 +1,24 @@
-<div>
-  <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-    <thead>
-      <tr>
-        <!--<th>Sr No.</th>-->
-        <th *ngFor="let heading of headings">{{heading}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of tableData">
-        <!--<td><input type="checkbox"/></td>-->
-        <td *ngFor="let heading of headings">{{data[heading]}}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="col-sm-12 table-scrollable">
+    <table id="example" class="table table-striped table-bordered"
+           cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th>Sr No.</th>
+            <th *ngFor="let heading of headings">{{heading}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of tableData; let i = index">
+            <td class="sr-no">
+                <div>
+                    <span>{{i}}.</span>
+                    <input type="checkbox" *ngIf="selectable"
+                                    (change)="updateSelection(i, $event)"/>
+                </div>
+
+            </td>
+            <td *ngFor="let heading of headings">{{data[heading]}}</td>
+        </tr>
+        </tbody>
+    </table>
 </div>

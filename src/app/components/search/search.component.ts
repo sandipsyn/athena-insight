@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { QueryOptions } from '../../configs/queryOptions.config';
-//import { searchResult } from '../../configs/searchResult';
-import { SearchService } from '../../services/searchService';
+
+import { SearchDataService } from '../../services/searchService';
 import { ApiService } from '../../services/apiService';
 
 @Component({
@@ -29,7 +29,7 @@ export class SearchComponent {
 
     // Constructor
     constructor(private router:Router,
-                private searchService:SearchService,
+                private searchService:SearchDataService,
                 private apiService:ApiService) {
     }
 

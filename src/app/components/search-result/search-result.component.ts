@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { SearchService } from '../../services/searchService';
+import { SearchDataService } from '../../services/searchService';
 
 @Component({
     selector: 'search-result',
@@ -14,7 +14,7 @@ export class SearchResultComponent {
     resultData = this.searchService.getSearchResult();
 
     constructor(private router:Router,
-                private searchService:SearchService) {
+                private searchService:SearchDataService) {
         this.getData();
     }
 
@@ -24,6 +24,9 @@ export class SearchResultComponent {
         }
     }
 
+    /**
+     * Redirect user to tagged results screen
+     */
     getTaggedResult():void {
         this.router.navigate(['/result']);
     }

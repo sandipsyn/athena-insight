@@ -1,10 +1,14 @@
 import { Injectable }    from '@angular/core';
 
-// import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class SearchService {
+export class SearchDataService {
+
+  // variable for storing searched results
   searchResult = [];
+
+  // variable for storing selections made by user
+  selectedData = [];
 
   // Returns processed search result
   getSearchResult(): any {
@@ -57,5 +61,13 @@ export class SearchService {
     }
 
     return result;
+  }
+
+  /**
+   * Returns data selected by user for analysis
+   * @return {Array}
+   */
+  getUserSelection() {
+    return this.selectedData;
   }
 }

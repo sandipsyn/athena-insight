@@ -22,9 +22,7 @@
         "app/css/font-awesome.min.css",
         "styles.css"
       ],
-      "scripts": [
-         "../node_modules/ncbi-eutils/ncbi-eutils.min.js"
-      ],
+      "scripts": [],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",

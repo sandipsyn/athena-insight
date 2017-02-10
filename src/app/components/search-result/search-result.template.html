@@ -14,8 +14,9 @@
         You can download search results as CSV and work locally to refine the set as per your need.
       </h4>
       </div>
-      <a routerLink="/result">Get Tagged Result</a>
-      <data-table [tableData]="resultData"></data-table>
+      <data-table [tableData]="resultData" [selectable]="true"></data-table>
+      <button class="btn btn-primary" (click)="getTaggedResult()"
+              [disabled]="!searchService.selectedData.length">Get Tagged Result</button>
     </div>
   </div>
 

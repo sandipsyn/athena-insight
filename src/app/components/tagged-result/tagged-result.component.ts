@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ApiService } from '../../services/apiService';
-import { SearchService } from '../../services/searchService';
+import { SearchDataService } from '../../services/searchService';
 
 @Component({
     selector: 'tagged-result',
@@ -15,13 +15,13 @@ export class TaggedResultComponent {
     inProgress:Boolean;
     progressValue:number;
 
-    progress: any;
+    progress:any;
 
     taggedResult = this.searchService.getSearchResult();
 
     constructor(private router:Router,
                 private apiService:ApiService,
-                private searchService:SearchService) {
+                private searchService:SearchDataService) {
         this.inProgress = true;
         this.progressValue = 0;
 
@@ -49,9 +49,13 @@ export class TaggedResultComponent {
         }
     }
 
+    /**
+     *  Calls backend API to generate tagged CSV
+     */
     getTaggedResult() {
+
         console.time('Node API');
-        this.apiService.getTaggedResult(this.taggedResult)
+        this.apiService.getTaggedResult(this.searchService.selectedData)
             .then((data) => {
                 console.timeEnd('Node API');
                 this.taggedResult = data;
