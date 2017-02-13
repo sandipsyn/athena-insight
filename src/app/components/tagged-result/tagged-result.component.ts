@@ -74,6 +74,9 @@ export class TaggedResultComponent {
         this.apiService.downloadResults(this.taggedResult)
             .then((data) => {
                 console.log('file downloaded!!');
+                var blob = new Blob([data], { type: "text/csv; charset=UTF-8" });
+                var objectUrl = URL.createObjectURL(blob);
+                window.open(objectUrl);
             })
             .catch((err) => {
                 console.log('error downloading file!!');

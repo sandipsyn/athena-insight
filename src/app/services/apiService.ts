@@ -56,10 +56,7 @@ export class ApiService {
     downloadResults(resultData:any):Promise<any> {
         return this.http.post(this.fileDownloadUrl, resultData)
             .toPromise()
-            .then(res => {
-                console.log(res);
-                //res.json();
-            })
+            .then(res => res.text())
             .catch(this.handleError);
     }
 
