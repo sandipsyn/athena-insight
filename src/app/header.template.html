@@ -18,7 +18,7 @@
       </div>
 
       <div *ngIf="auth.authenticated() && profile" class="col-sm-6 col-xs-8 txt-right">
-        <span>{{profile.name}}</span>
+        <span class="profile">{{profile.name}}</span>
         <button class="btn-logout" (click)="auth.logout()"> Log Out </button>
       </div>
 

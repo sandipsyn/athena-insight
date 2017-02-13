@@ -27,6 +27,8 @@ body {
 
 .navbar {
     background: #ffffff;
+    background: #4682B4;
+    border-radius: 0;
     /*border-bottom: 1px solid #e1e1e1;
     box-shadow: 0 0 4px 0 rgba(0,0,0,0.2);*/
     /*box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);*/
@@ -53,19 +55,29 @@ body {
 }
 
 .btn-logout {
+    /*border-radius: 3px;*/
+    /*padding: 4px 8px;*/
+    /*margin: 12px;*/
+    /*min-width: 46px;*/
+    /*text-align: center;*/
+    /*border: 1px solid #3079ed;*/
+    /*color: #fff;*/
+    /*text-shadow: 0 1px rgba(0, 0, 0, 0.1);*/
+    /*background-color: #4d90fe;*/
+
     border-radius: 3px;
     padding: 4px 8px;
     margin: 12px;
     min-width: 46px;
     text-align: center;
-    border: 1px solid #3079ed;
-    color: #fff;
+    border: 1px solid #FFF;
+    color: #3079ed;
     text-shadow: 0 1px rgba(0, 0, 0, 0.1);
-    background-color: #4d90fe;
+    background-color: #FFF;
 }
 
 .btn-logout:hover, .btn-logout:focus {
-    background-color: #3079ed;
+    /*background-color: #3079ed;*/
 }
 
 .txt-right {
@@ -88,6 +100,7 @@ body {
 
 .logo a {
     text-decoration: none;
+    color: #ffffff;
 }
 
 .progress {
@@ -107,6 +120,14 @@ body {
 .login {
     background: #ffffff;
     text-align: center;
+}
+
+.profile-container {
+    margin-top: 10px;
+}
+
+.profile {
+    color: #ffffff;
 }
 
 .table-scrollable {
@@ -260,7 +281,7 @@ table td p {
 
 .btn.btn-signin:hover, .btn.btn-signin, .btn.google-signin, .btn.linkedIn-signin {
     /*background-color: #4d90fe; */
-    background-color: rgb(244, 101, 66);
+    /*background-color: rgb(244, 101, 66);*/
     /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
     padding: 0px;
     font-weight: 700;
