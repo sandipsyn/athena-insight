@@ -10,6 +10,7 @@ export class ApiService {
 
     private taggedApiUrl = `https://${backendConfig.endpoint}/${backendConfig.getTaggedResult}`;
     private eutilsSearchUrl = `https://${backendConfig.endpoint}/${backendConfig.searchNCBI}`;
+    private fileDownloadUrl = `https://${backendConfig.endpoint}/downlaodFile`;
 
     constructor(private http:Http) {
     }
@@ -42,9 +43,23 @@ export class ApiService {
      */
     searchNCBI(searchData:any):Promise<any> {
         return this.http.post(this.eutilsSearchUrl, searchData)
-        // return this.http.get(this.eutilsSearchUrl)
             .toPromise()
             .then(res => res.json())
+            .catch(this.handleError);
+    }
+
+    /**
+     * Makes backend request for file download
+     * @param resultData
+     * @return {Promise}
+     */
+    downloadResults(resultData:any):Promise<any> {
+        return this.http.post(this.fileDownloadUrl, resultData)
+            .toPromise()
+            .then(res => {
+                console.log(res);
+                //res.json();
+            })
             .catch(this.handleError);
     }
 

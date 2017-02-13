@@ -55,7 +55,7 @@ export class TaggedResultComponent {
     getTaggedResult() {
 
         console.time('Node API');
-        this.apiService.getTaggedResult(this.searchService.selectedData)
+        this.apiService.getTaggedResult(this.searchService.getUserSelection())
             .then((data) => {
                 console.timeEnd('Node API');
                 this.taggedResult = data;
@@ -64,6 +64,19 @@ export class TaggedResultComponent {
             })
             .catch((err) => {
                 console.log('Error fetching data')
+            })
+    }
+
+    /**
+     * Calls backend API to download results as CSV
+     */
+    downloadResultAsCSV() {
+        this.apiService.downloadResults(this.taggedResult)
+            .then((data) => {
+                console.log('file downloaded!!');
+            })
+            .catch((err) => {
+                console.log('error downloading file!!');
             })
     }
 
