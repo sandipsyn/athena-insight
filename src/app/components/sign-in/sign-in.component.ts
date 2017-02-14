@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-//import { Auth } from './../../services/auth.service';
 
 @Component({
   selector: 'sign-in',
@@ -11,6 +10,8 @@ export class SignInComponent {
   userName: string;
 
   constructor(private router:Router) {
-//    this.userName = localStorage.getItem('userName');
+    if (localStorage.getItem('isAuthenticated')) {
+      router.navigate(['/search']);
+    }
   }
 }
