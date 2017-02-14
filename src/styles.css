@@ -133,7 +133,7 @@ body {
 .table-scrollable {
     max-height: 480px;
     max-height: 70vh;
-    overflow: hidden;
+    overflow: auto;
     margin: 20px auto;
 }
 
