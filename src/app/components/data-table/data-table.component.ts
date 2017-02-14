@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges} from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 
 import { SearchDataService } from './../../services/searchService';
 
@@ -8,7 +8,7 @@ import { SearchDataService } from './../../services/searchService';
     templateUrl: 'data-table.template.html'
 })
 
-export class DataTableComponent implements OnChanges {
+export class DataTableComponent implements OnChanges, OnInit {
 
     // Table column headers
     headings;
@@ -33,6 +33,10 @@ export class DataTableComponent implements OnChanges {
     ngOnChanges(changes) {
         // Extract headings from Object to be used as table heading
         this.headings = this.tableData && this.tableData[0] && Object.keys(this.tableData[0]);
+    }
+
+    ngOnInit() {
+        this.dataService.selectedData = [];
     }
 
     /**

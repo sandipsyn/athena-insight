@@ -20,12 +20,20 @@
                         [selectable]="true"></data-table>
 
             <div class="col-sm-12 text-center">
-                <button class="btn btn-primary" (click)="getTaggedResult()"
-                        [disabled]="!searchService.selectedData.length">Get
-                    Tagged Result
+                <button disabled="disabled"
+                        class="btn btn-lg btn-primary btn-signin">
+                    Upload GSE list
+                </button>
+                <button disabled="disabled"
+                        class="btn btn-lg btn-primary btn-signin">
+                    Download Results
+                </button>
+                <button class="btn btn-lg btn-primary btn-signin"
+                        (click)="getTaggedResult()"
+                        [disabled]="!searchService.selectedData.length">Analyse
                 </button>
                 <!--<button class="btn btn-primary"-->
-                        <!--[disabled]="!searchService.selectedData.length">Reset-->
+                <!--[disabled]="!searchService.selectedData.length">Reset-->
                 <!--</button>-->
             </div>
 

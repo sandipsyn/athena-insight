@@ -26,7 +26,7 @@ body {
 }*/
 
 .navbar {
-    background: #ffffff;
+    /*background: #ffffff;*/
     background: #4682B4;
     border-radius: 0;
     /*border-bottom: 1px solid #e1e1e1;
@@ -131,31 +131,57 @@ body {
 }
 
 .table-scrollable {
-    /*height: 620px;*/
-    overflow: auto;
+    max-height: 480px;
+    max-height: 70vh;
+    overflow: hidden;
     margin: 20px auto;
+}
+
+table tr {
+    background: #e5e5e5;
+}
+
+.table-bordered > tbody > tr > td,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > td,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > thead > tr > th {
+    border: 1px solid #d1d1d1;
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+    padding: 3px 4px;
+}
+
+.table-bordered > thead > tr > th {
+    font-weight: normal;
+    text-transform: uppercase;
 }
 
 .sr-no div {
     display: inline-block;
     width: 42px;
 }
-table tr th{
-    text-align: center;
+
+.table-head {
+    background: #90b7d5;
 }
 
 table td {
-    /*white-space: pre-wrap;*/
-    /*word-wrap: break-word;*/
+    max-width: 150px;
 }
 
 table td p {
-    /*max-width: 200px;*/
-    max-height: 140px;
+    max-height: 40px;
     text-overflow: ellipsis;
-    overflow: hidden;
+    overflow: auto;
 }
-
 
 /**
  * Loading spinner
@@ -170,6 +196,7 @@ table td p {
 .alert {
     margin: 0 8%;
 }
+
 /*
  * General styles
  */
@@ -283,7 +310,7 @@ table td p {
     /*background-color: #4d90fe; */
     /*background-color: rgb(244, 101, 66);*/
     /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
-    padding: 0px;
+    padding: 4px;
     font-weight: 700;
     font-size: 90%;
     height: 36px;

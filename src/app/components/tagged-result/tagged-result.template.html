@@ -1,38 +1,42 @@
 <div class="container">
 
-  <div class="progress-container" *ngIf="inProgress">
-    <h3>PLEASE WAIT WHILE RESULTS ARE BEING PROCESSED </h3>
-    <!--<div class="progress">-->
-      <!--<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" [attr.aria-valuenow]="progressValue" aria-valuemin="0" aria-valuemax="100" [style.width]="progressValue + '%'">-->
+    <div class="progress-container" *ngIf="inProgress">
+        <h3>PLEASE WAIT WHILE RESULTS ARE BEING PROCESSED </h3>
+        <!--<div class="progress">-->
+        <!--<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" [attr.aria-valuenow]="progressValue" aria-valuemin="0" aria-valuemax="100" [style.width]="progressValue + '%'">-->
         <!--{{progressValue}}% Complete-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<loading-spinner></loading-spinner>-->
-    <div class="col-sm-12 text-center">
+        <!--</div>-->
+        <!--</div>-->
+        <!--<loading-spinner></loading-spinner>-->
+        <div class="col-sm-12 text-center">
 
-      <h3>
-        <i class="fa fa-2x fa-spinner fa-spin"></i>
-        <span> Processing...</span>
-      </h3>
+            <h3>
+                <i class="fa fa-2x fa-spinner fa-spin"></i>
+                <span> Processing...</span>
+            </h3>
 
-    </div>
-    <p>Your request is being processed by our server. This will take a minute of two...</p>
-  </div>
-
-  <div *ngIf="!inProgress">
-    <div class="col col-sm-12 result-container">
-      <h3>ALL DONE!</h3>
-      <p>
-        Your job is processed. You can now download the tagged results set.
-      </p>
-
-      <button (click) = "downloadResultAsCSV()"
-              class="btn btn-lg btn-primary btn-block btn-signin btn-download"> Download </button>
+        </div>
+        <p>Your request is being processed by our server. This will take a
+            minute of two...</p>
     </div>
 
-    <div class="col-sm-12">
-      <data-table [tableData]="taggedResult"></data-table>
-    </div>
+    <div *ngIf="!inProgress">
+        <div class="col col-sm-12 result-container">
+            <h3>ALL DONE!</h3>
 
-  </div>
+            <p>
+                Your job is processed. You can now download the tagged results.
+            </p>
+
+            <div class="col-sm-12">
+                <data-table [tableData]="taggedResult"></data-table>
+            </div>
+
+            <button (click)="downloadResultAsCSV()"
+                    class="btn btn-lg btn-primary btn-block btn-signin btn-download">
+                Download
+            </button>
+        </div>
+
+    </div>
 </div>

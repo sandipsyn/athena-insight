@@ -1,6 +1,6 @@
 <div class="container" *ngIf="!auth.authenticated()">
   <div class="row login-container">
-    <div class="col-sm-6">
+    <div class="col-sm-12 text-center">
       <div class="card card-container login">
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <h1 id="profile-img" class="profile-img-card">Login</h1>
@@ -8,8 +8,8 @@
         <p class="welcome-note">Login to your account below.</p>
         <p id="profile-name" class="profile-name-card"></p>
         <form class="form-signin">
-          <input class="form-control" id="inputdefault" type="text" placeholder="you@youremail.com">
-          <input class="form-control" id="inputdefault" type="text" placeholder="password">
+          <input class="form-control" type="text" placeholder="you@youremail.com">
+          <input class="form-control" type="password" placeholder="password">
 
           <div id="remember" class="checkbox">
             <label>
@@ -30,17 +30,17 @@
         </form>
       </div>
     </div>
-    <div class="col-sm-6 hidden-xs">
-      <div class="athena-info-container">
-        <p class="info">
-          GET TO KNOW US
-          <p>
-            <p class="about-us">
-              At Athena Insights, we believe that the best solutions come from the people who are most affected by the problem. We have dedicated our lives to working with these communities - providing whatever support they need in order to unlock their potential.
-              We want all individuals to envision their goals and realize they have the ability to make their dreams a reality.
-            </p>
-      </div>
-    </div>
+    <!--<div class="col-sm-6 hidden-xs">-->
+      <!--<div class="athena-info-container">-->
+        <!--<p class="info">-->
+          <!--GET TO KNOW US-->
+          <!--<p>-->
+            <!--<p class="about-us">-->
+              <!--At Athena Insights, we believe that the best solutions come from the people who are most affected by the problem. We have dedicated our lives to working with these communities - providing whatever support they need in order to unlock their potential.-->
+              <!--We want all individuals to envision their goals and realize they have the ability to make their dreams a reality.-->
+            <!--</p>-->
+      <!--</div>-->
+    <!--</div>-->
   </div>
 </div>
 
