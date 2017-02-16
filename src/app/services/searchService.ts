@@ -36,7 +36,7 @@ export class SearchDataService {
     }
 
     // Processes eUtils response data and converts it to format required to
-    // disaply in table
+    // display in table
     processData(dataSet):any {
         let processedResult = [];
 

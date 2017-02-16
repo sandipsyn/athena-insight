@@ -9,8 +9,7 @@ import { ApiService } from '../../services/apiService';
 @Component({
     selector: 'athena-search',
     templateUrl: 'search.template.html',
-    styleUrls: ['./../../css/search.css'],
-    providers: [ApiService]
+    styleUrls: ['./../../css/search.css']
 })
 
 export class SearchComponent {
@@ -72,6 +71,8 @@ export class SearchComponent {
             })
             .catch((err) => {
                 console.log(`Error ${err}`);
+                this.drug = '';
+                this.disease = '';
                 this.onSubmit = false;
                 this.searchError = true;
                 this.errorMessage = `No result found!!.`;

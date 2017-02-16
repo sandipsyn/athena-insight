@@ -1,4 +1,4 @@
-import { Injectable }    from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
@@ -10,7 +10,9 @@ export class ApiService {
 
     private taggedApiUrl = `https://${backendConfig.endpoint}/${backendConfig.getTaggedResult}`;
     private eutilsSearchUrl = `https://${backendConfig.endpoint}/${backendConfig.searchNCBI}`;
-    private fileDownloadUrl = `https://${backendConfig.endpoint}/downlaodFile`;
+    private fileDownloadUrl = `https://${backendConfig.endpoint}/${backendConfig.downloadFile}`;
+
+    public searchQuery = '';
 
     constructor(private http:Http) {
     }
@@ -42,6 +44,8 @@ export class ApiService {
      * @return {any|Promise<Promise<any>>}
      */
     searchNCBI(searchData:any):Promise<any> {
+        this.searchQuery = searchData.disease || searchData.drug;
+
         return this.http.post(this.eutilsSearchUrl, searchData)
             .toPromise()
             .then(res => res.json())
@@ -56,8 +60,19 @@ export class ApiService {
     downloadResults(resultData:any):Promise<any> {
         return this.http.post(this.fileDownloadUrl, resultData)
             .toPromise()
-            .then(res => res.text())
+            .then(res => {
+                return this.downloadFile(res.json().fileName)
+            })
             .catch(this.handleError);
     }
 
+    /**
+     * Download file with given filename
+     * @param filename
+     * @return {Promise}
+     */
+    downloadFile(filename:string) {
+        let fileUrl = `${this.fileDownloadUrl}/?filename=${filename}&search=${this.searchQuery}`;
+        window.open(fileUrl);
+    }
 }

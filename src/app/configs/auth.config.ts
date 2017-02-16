@@ -15,5 +15,6 @@ export const backendConfig = {
   endpoint: '35.164.184.248:3000',
   //endpoint: 'localhost:3000',
   getTaggedResult: 'processData',
-  searchNCBI: 'search-ncbi'
+  searchNCBI: 'search-ncbi',
+  downloadFile: 'downlaodFile'
 };

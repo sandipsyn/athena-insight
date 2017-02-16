@@ -17,27 +17,29 @@ import { DataTableComponent } from './components/data-table/data-table.component
 import { LoadingSpinnerComponent } from './loading-spinner.component';
 
 import { SearchDataService } from './services/searchService';
+import { ApiService } from './services/apiService';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    SignInComponent,
-    SearchComponent,
-    SearchResultComponent,
-    TaggedResultComponent,
-    AutocompleteComponent,
-    DataTableComponent,
-    LoadingSpinnerComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    AppRoutingModule
-  ],
-  providers: [SearchDataService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        SignInComponent,
+        SearchComponent,
+        SearchResultComponent,
+        TaggedResultComponent,
+        AutocompleteComponent,
+        DataTableComponent,
+        LoadingSpinnerComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        AppRoutingModule
+    ],
+    providers: [SearchDataService, ApiService],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

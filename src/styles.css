@@ -161,7 +161,7 @@ table tr {
 
 .table-bordered > thead > tr > th {
     font-weight: normal;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .sr-no div {
@@ -175,12 +175,17 @@ table tr {
 
 table td {
     max-width: 150px;
+    white-space:nowrap;
+    overflow-x: hidden;
+    overflow-y: hide;
+    /*-webkit-overflow-scrolling:touch;*/
 }
 
 table td p {
-    max-height: 40px;
-    text-overflow: ellipsis;
-    overflow: auto;
+    /*max-height: 40px;*/
+    /*overflow: auto;*/
+    display:inline-block;
+    max-height:40px;
 }
 
 /**

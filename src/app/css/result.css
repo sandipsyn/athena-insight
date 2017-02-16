@@ -23,3 +23,8 @@
   margin: 4px auto;
 }
 
+@media (max-width: 320px) {
+  .btn-download {
+    max-width: 200px;
+  }
+}

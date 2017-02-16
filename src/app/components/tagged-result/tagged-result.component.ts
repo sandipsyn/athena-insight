@@ -7,8 +7,7 @@ import { SearchDataService } from '../../services/searchService';
 @Component({
     selector: 'tagged-result',
     templateUrl: 'tagged-result.template.html',
-    styleUrls: ['./../../css/result.css'],
-    providers: [ApiService]
+    styleUrls: ['./../../css/result.css']
 })
 
 export class TaggedResultComponent {
@@ -72,11 +71,9 @@ export class TaggedResultComponent {
      */
     downloadResultAsCSV() {
         this.apiService.downloadResults(this.taggedResult)
-            .then((data) => {
+            .
+            then(() => {
                 console.log('file downloaded!!');
-                var blob = new Blob([data], { type: "text/csv; charset=UTF-8" });
-                var objectUrl = URL.createObjectURL(blob);
-                window.open(objectUrl);
             })
             .catch((err) => {
                 console.log('error downloading file!!');
