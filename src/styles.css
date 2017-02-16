@@ -150,12 +150,12 @@ table tr {
     border: 1px solid #d1d1d1;
 }
 
-.table>tbody>tr>td,
-.table>tbody>tr>th,
-.table>tfoot>tr>td,
-.table>tfoot>tr>th,
-.table>thead>tr>td,
-.table>thead>tr>th {
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
     padding: 3px 4px;
 }
 
@@ -175,18 +175,32 @@ table tr {
 
 table td {
     max-width: 150px;
-    white-space:nowrap;
+    white-space: nowrap;
     overflow-x: hidden;
     overflow-y: hide;
     /*-webkit-overflow-scrolling:touch;*/
 }
 
-table td p {
-    /*max-height: 40px;*/
-    /*overflow: auto;*/
-    display:inline-block;
-    max-height:40px;
+.table > tbody > tr > td {
+    text-align: left;
 }
+
+table td p {
+    display: inline-block;
+    max-height: 40px;
+}
+
+table td p.highlight {
+    background: grey;
+    color: #ffffff;
+}
+
+.table > tbody > tr > td.success,
+.table > thead > tr > th.success {
+    background-color: #93DB70;
+}
+
+
 
 /**
  * Loading spinner

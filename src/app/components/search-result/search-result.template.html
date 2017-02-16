@@ -13,7 +13,7 @@
         <div class="col col-sm-12 search-table">
             <div>
                 <h4 class="sub-heading">
-                    GEO GSE Records for {{searchQuery}}
+                    GSE Records for {{searchQuery}}
                 </h4>
             </div>
             <data-table [tableData]="resultData"
@@ -24,7 +24,7 @@
                         class="btn btn-lg btn-primary btn-signin">
                     Upload GSE list
                 </button>
-                <button disabled="disabled"
+                <button (click)="downloadSearchResult()"
                         class="btn btn-lg btn-primary btn-signin">
                     Download Results
                 </button>

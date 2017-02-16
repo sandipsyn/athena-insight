@@ -3,8 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+// Routing module
 import { AppRoutingModule } from './app.routing.module';
 
+// Components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header.component';
 import { FooterComponent } from './footer.component';
@@ -16,8 +18,13 @@ import { AutocompleteComponent } from './components/autocomplete/autocomplete.co
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { LoadingSpinnerComponent } from './loading-spinner.component';
 
+// Services
 import { SearchDataService } from './services/searchService';
 import { ApiService } from './services/apiService';
+
+// Pipes
+import { TransformToLink } from './pipes/transformToLink.pipe';
+import { HighlightText } from './pipes/textHighlighter.pipe';
 
 @NgModule({
     declarations: [
@@ -30,7 +37,9 @@ import { ApiService } from './services/apiService';
         TaggedResultComponent,
         AutocompleteComponent,
         DataTableComponent,
-        LoadingSpinnerComponent
+        LoadingSpinnerComponent,
+        TransformToLink,
+        HighlightText
     ],
     imports: [
         BrowserModule,

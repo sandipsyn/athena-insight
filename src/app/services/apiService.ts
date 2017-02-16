@@ -8,11 +8,21 @@ import { backendConfig } from './../configs/auth.config';
 @Injectable()
 export class ApiService {
 
+    // backend API Urls
     private taggedApiUrl = `https://${backendConfig.endpoint}/${backendConfig.getTaggedResult}`;
     private eutilsSearchUrl = `https://${backendConfig.endpoint}/${backendConfig.searchNCBI}`;
     private fileDownloadUrl = `https://${backendConfig.endpoint}/${backendConfig.downloadFile}`;
 
     public searchQuery = '';
+
+    /**
+     * File type for download
+     * This value is used for naming files while downloading. By default it is
+     * set to 'GSM' which refers to tagged files. In case for search result
+     * resultFileType will be 'GSE'. Which can be set while making download
+     * request
+     */
+    public resultFileType = 'GSM';
 
     constructor(private http:Http) {
     }
@@ -57,7 +67,11 @@ export class ApiService {
      * @param resultData
      * @return {Promise}
      */
-    downloadResults(resultData:any):Promise<any> {
+    downloadResults(resultData:any, type:string):Promise<any> {
+        // If passed use new value for file type
+        //
+        this.resultFileType = type ? type : this.resultFileType;
+
         return this.http.post(this.fileDownloadUrl, resultData)
             .toPromise()
             .then(res => {
@@ -72,7 +86,7 @@ export class ApiService {
      * @return {Promise}
      */
     downloadFile(filename:string) {
-        let fileUrl = `${this.fileDownloadUrl}/?filename=${filename}&search=${this.searchQuery}`;
+        let fileUrl = `${this.fileDownloadUrl}/?filename=${filename}&search=${this.searchQuery}&type=${this.resultFileType}`;
         window.open(fileUrl);
     }
 }

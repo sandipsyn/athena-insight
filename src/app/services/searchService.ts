@@ -45,7 +45,7 @@ export class SearchDataService {
             let result = this.retrieveData(dataSet[i]);
 
             let requiredResult = {
-                GSE_ACC: result.Accession,
+                GSE: result.Accession,
                 Title: result.title,
                 GSM_Count: result.n_samples,
                 Summary: result.summary,

@@ -4,7 +4,10 @@
         <thead>
         <tr class="table-head">
             <th>Sr No.</th>
-            <th *ngFor="let heading of headings">{{heading}}</th>
+            <th *ngFor="let heading of headings"
+                [ngClass]="{'success': heading == 'classification' }">
+                {{heading}}
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -18,8 +21,10 @@
                 </div>
 
             </td>
-            <td *ngFor="let heading of headings">
-                <p>{{data[heading]}}</p>
+            <td *ngFor="let heading of headings"
+                [ngClass]="{'success': heading == 'classification' }">
+                <p #el>{{data[heading] | highlightText: [el, heading] |
+                    transformToLink: el}}</p>
             </td>
         </tr>
         </tbody>

@@ -27,17 +27,16 @@ export class TaggedResultComponent {
         // Fetch data from server
         this.getData();
 
-        this.progress = setInterval(() => {
-
-            if (this.progressValue === 100) {
-                clearInterval(this.progress);
-                this.inProgress = false;
-            }
-
-            this.progressValue += 5;
-
-        }, 500);
-
+        //this.progress = setInterval(() => {
+        //
+        //    if (this.progressValue === 100) {
+        //        clearInterval(this.progress);
+        //        this.inProgress = false;
+        //    }
+        //
+        //    this.progressValue += 5;
+        //
+        //}, 500);
     }
 
     getData() {
@@ -70,14 +69,12 @@ export class TaggedResultComponent {
      * Calls backend API to download results as CSV
      */
     downloadResultAsCSV() {
-        this.apiService.downloadResults(this.taggedResult)
-            .
-            then(() => {
+        this.apiService.downloadResults(this.taggedResult, 'GSM')
+            .then(() => {
                 console.log('file downloaded!!');
             })
             .catch((err) => {
                 console.log('error downloading file!!');
             })
     }
-
 }

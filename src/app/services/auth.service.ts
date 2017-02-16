@@ -86,7 +86,7 @@ export class Auth {
     }, function(err) {
       if (err) alert("something went wrong: " + err.message);
     });
-  };
+  }
 
   public login(username, password) {
     this.auth0.login({
@@ -97,7 +97,7 @@ export class Auth {
     }, function(err) {
       if (err) alert("something went wrong: " + err.message);
     });
-  };
+  }
 
   public googleLogin() {
     this.auth0.login({
@@ -105,22 +105,21 @@ export class Auth {
     }, function(err) {
       if (err) alert("something went wrong: " + err.message);
     });
-  };
+  }
 
   public authenticated() {
     // Check if there's an unexpired JWT
     // It searches for an item in localStorage with key == 'id_token'
     return tokenNotExpired();
-
-    // return localStorage value of profile
-    // return localStorage.getItem('profile');
-  };
+  }
 
   public logout() {
     // Remove token and profile from localStorage
     localStorage.removeItem('id_token');
     localStorage.removeItem('profile');
     this.userProfile = undefined;
-    this.router.navigate(['/']);
-  };
+    //this.router.navigate(['/']);
+    console.log('Logout Url', authConfig.logoutURL);
+    window.location.href = authConfig.logoutURL;
+  }
 }

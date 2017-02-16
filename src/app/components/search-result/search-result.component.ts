@@ -38,4 +38,17 @@ export class SearchResultComponent {
     getTaggedResult():void {
         this.router.navigate(['/result']);
     }
+
+    /**
+     * Request backend to download search result
+     */
+    downloadSearchResult():void {
+        this.apiService.downloadResults(this.resultData, 'GSE')
+            .then(() => {
+                console.log('file downloaded!!');
+            })
+            .catch((err) => {
+                console.log('error downloading file!!');
+            })
+    }
 }
