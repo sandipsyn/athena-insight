@@ -75,7 +75,7 @@ export class SearchComponent {
                 this.disease = '';
                 this.onSubmit = false;
                 this.searchError = true;
-                this.errorMessage = `No result found!!.`;
+                this.errorMessage = `No result found!`;
             });
     }
 

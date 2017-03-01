@@ -19,13 +19,7 @@ export class DataTableComponent implements OnChanges, OnInit {
 
     // Input for table data
     @Input()
-        tableData:any = [
-            {
-                'Name': 'Aryabhatt',
-                'Launch Year': 1975,
-                'Launch Vehicle': 'u-11 Interkosmos'
-            }
-        ];
+        tableData:any = [];
 
     @Input()
         selectable = false;

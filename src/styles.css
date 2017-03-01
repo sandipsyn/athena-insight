@@ -11,6 +11,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+
 /*h1 {
   text-align: center;
     font-family: 'Open Sans', arial;
@@ -20,6 +21,7 @@ body {
     margin-top: 27px;
     margin-bottom: 50px;
 }*/
+
 
 /*.container {
   width: 920px;
@@ -64,7 +66,6 @@ body {
     /*color: #fff;*/
     /*text-shadow: 0 1px rgba(0, 0, 0, 0.1);*/
     /*background-color: #4d90fe;*/
-
     border-radius: 3px;
     padding: 4px 8px;
     margin: 12px;
@@ -76,7 +77,8 @@ body {
     background-color: #FFF;
 }
 
-.btn-logout:hover, .btn-logout:focus {
+.btn-logout:hover,
+.btn-logout:focus {
     /*background-color: #3079ed;*/
 }
 
@@ -92,6 +94,7 @@ body {
     text-align: center;
 }
 
+
 /*@media (min-width: 480px) {
   .footer {
       position: absolute;
@@ -101,6 +104,16 @@ body {
 .logo a {
     text-decoration: none;
     color: #ffffff;
+}
+
+.logo a h3 {
+    font-weight: bold;
+}
+
+@media (max-width: 480px) {
+    .logo a h3{
+        font-weight: normal;
+    }
 }
 
 .progress {
@@ -137,6 +150,10 @@ body {
     margin: 20px auto;
 }
 
+.table-scrollable > table {
+    margin-bottom: 0;
+}
+
 table tr {
     background: #e5e5e5;
 }
@@ -164,9 +181,8 @@ table tr {
     /*text-transform: uppercase;*/
 }
 
-.sr-no div {
-    display: inline-block;
-    width: 42px;
+.sr-no {
+    width: 45px;
 }
 
 .table-head {
@@ -174,11 +190,11 @@ table tr {
 }
 
 table td {
-    max-width: 150px;
+    max-width: 100px;
     white-space: nowrap;
     overflow-x: hidden;
     overflow-y: hide;
-    /*-webkit-overflow-scrolling:touch;*/
+    -webkit-overflow-scrolling:touch;
 }
 
 .table > tbody > tr > td {
@@ -201,10 +217,37 @@ table td p.highlight {
 }
 
 
+/** Table with fixed header **
+
+.table-fixed thead {
+    width: 97%;
+}
+
+.table-fixed tbody {
+    height: 230px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+    display: block;
+}
+
+.table-fixed tbody td,
+.table-fixed thead > tr> th {
+    float: left;
+    border-bottom-width: 0;
+}*/
+
 
 /**
  * Loading spinner
  */
+
 .loading {
     z-index: 999;
     height: 60px;
@@ -216,9 +259,12 @@ table td p.highlight {
     margin: 0 8%;
 }
 
+
 /*
  * General styles
  */
+
+
 /*@media (max-width: 767px) {
     .welcome-note {
         display: none;
@@ -274,6 +320,7 @@ table td p.highlight {
     text-align: center;
 }
 
+
 /*
  * Form styles
  */
@@ -301,13 +348,17 @@ table td p.highlight {
     box-sizing: border-box;
 }
 
-.form-signin #inputEmail, .form-signin #inputPassword {
+.form-signin #inputEmail,
+.form-signin #inputPassword {
     direction: ltr;
     height: 44px;
     font-size: 16px;
 }
 
-.form-signin input[type=email], .form-signin input[type=password], .form-signin input[type=text], .form-signin button {
+.form-signin input[type=email],
+.form-signin input[type=password],
+.form-signin input[type=text],
+.form-signin button {
     width: 100%;
     display: block;
     margin-bottom: 10px;
@@ -325,7 +376,10 @@ table td p.highlight {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(104, 145, 162);
 }
 
-.btn.btn-signin:hover, .btn.btn-signin, .btn.google-signin, .btn.linkedIn-signin {
+.btn.btn-signin:hover,
+.btn.btn-signin,
+.btn.google-signin,
+.btn.linkedIn-signin {
     /*background-color: #4d90fe; */
     /*background-color: rgb(244, 101, 66);*/
     /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
@@ -343,13 +397,15 @@ table td p.highlight {
     transition: all 0.218s;
 }
 
-.btn.btn-google:hover, .btn.btn-google {
+.btn.btn-google:hover,
+.btn.btn-google {
     color: #fff;
     background-color: #dd4b39;
     border-color: rgba(0, 0, 0, 0.2)
 }
 
-.btn.btn-linkedin:hover, .btn.btn-linkedin {
+.btn.btn-linkedin:hover,
+.btn.btn-linkedin {
     color: #fff;
     background-color: #007bb6;
     border-color: rgba(0, 0, 0, 0.2);
@@ -359,7 +415,9 @@ table td p.highlight {
     color: rgb(104, 145, 162);
 }
 
-.forgot-password:hover, .forgot-password:active, .forgot-password:focus {
+.forgot-password:hover,
+.forgot-password:active,
+.forgot-password:focus {
     color: rgb(12, 97, 33);
 }
 
