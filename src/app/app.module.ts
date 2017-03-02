@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, enableProdMode } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -25,6 +25,8 @@ import { ApiService } from './services/apiService';
 // Pipes
 import { TransformToLink } from './pipes/transformToLink.pipe';
 import { HighlightText } from './pipes/textHighlighter.pipe';
+
+enableProdMode();
 
 @NgModule({
     declarations: [
