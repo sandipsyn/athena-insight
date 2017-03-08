@@ -249,8 +249,9 @@ table td {
 }
 
 table td p {
-    display: inline-block;
-    max-height: 40px;
+/*    display: inline-block;
+    max-height: 40px;*/
+    overflow: hidden;
 }
 
 table td p.highlight {
